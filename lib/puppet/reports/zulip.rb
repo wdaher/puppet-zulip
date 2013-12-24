@@ -35,6 +35,7 @@ Puppet::Reports.register_report(:zulip) do
       https.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       request = Net::HTTP::Post.new("/v#{API_VERSION}/messages")
+      request.add_field('User-Agent', 'ZulipPuppet/0.0.1')
       request.basic_auth("#{ZULIP_BOTEMAIL}", "#{ZULIP_KEY}")
 
       if ZULIP_TYPE == 'stream'
