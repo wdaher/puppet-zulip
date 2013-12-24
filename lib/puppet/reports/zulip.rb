@@ -32,7 +32,6 @@ Puppet::Reports.register_report(:zulip) do
       Puppet.debug "Sending status for #{self.host} to #{ZULIP_TO}"
       https = Net::HTTP.new('api.zulip.com','443')
       https.use_ssl = true
-      https.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       request = Net::HTTP::Post.new("/v#{API_VERSION}/messages")
       request.add_field('User-Agent', 'ZulipPuppet/0.0.1')
